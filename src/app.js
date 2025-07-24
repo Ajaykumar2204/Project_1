@@ -23,12 +23,12 @@ app.use(cors({
 
 app.use(express.json())
 app.use(cookieparser())
-app.use('/' , userroutes)
-app.use('/' , Restaurantroutes )
-app.use('/' , MenuRoutes )
-app.use('/' , UserMenuRoutes )
-app.use('/' , OrderRoutes)
- app.use('/' , FinalRoutes)
+app.use('/api' , userroutes)
+app.use('/api' , Restaurantroutes )
+app.use('/api' , MenuRoutes )
+app.use('/api' , UserMenuRoutes )
+app.use('/api' , OrderRoutes)
+ app.use('/api' , FinalRoutes)
 
 
 
