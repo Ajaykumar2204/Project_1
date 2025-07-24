@@ -24,7 +24,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieparser())
 app.use('/' , userroutes)
-app.use(',' ,Restaurantroutes)
+app.use('/' ,Restaurantroutes)
 app.use('/' , MenuRoutes )
 app.use('/' , UserMenuRoutes )
 app.use('/' , OrderRoutes)

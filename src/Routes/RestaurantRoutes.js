@@ -72,8 +72,7 @@ Restaurantroutes.post('/restaurant/register', usertokencheck, async (req, res) =
 Restaurantroutes.get('/restaurant/view', usertokencheck, async (req, res) => {
   try {
     const userinfo = req.user;
-
-    const Restaurantinfo = await Restaurant.findOne({ ownerId: userinfo._id });
+   const Restaurantinfo = await Restaurant.findOne({ ownerId: userinfo._id });
 
     if (!Restaurantinfo) {
       return res.status(404).json({ message: 'No restaurant found.' });
