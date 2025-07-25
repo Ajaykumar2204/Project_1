@@ -30,6 +30,16 @@ app.use('/' , UserMenuRoutes )
 app.use('/' , OrderRoutes)
  app.use('/' , FinalRoutes)
 
+     // ✅ Serve your React build static files
+app.use(express.static(path.join(__dirname, 'build')));
+
+// ✅ Fallback for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
+
 
 
 DataBaseConnection()

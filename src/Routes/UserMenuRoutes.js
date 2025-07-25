@@ -16,11 +16,12 @@ UserMenuRoutes.get('/menu/view/:RestaurantId', async (req, res) => {
     if (!RestaurantFound) {
       return res.status(404).json({ message: 'Restaurant not found' });
     }
-
+   
     const MenuInfo = await Menu.find({ RestaurantId: RestaurantId }).populate('RestaurantId' , 'Restaurantname  ownername  Phone  NumberOfTables');
     if (!MenuInfo || MenuInfo.length === 0) {
       return res.status(404).json({ message: 'Restaurant menu not found' });
     }
+
 
     res.status(200).json({
       message: 'Restaurant menu found',
