@@ -31,13 +31,7 @@ app.use('/' , MenuRoutes )
 app.use('/' , UserMenuRoutes )
 app.use('/' , OrderRoutes)
 app.use('/' , FinalRoutes)
-// Serve static files
-app.use(express.static(path.join(__dirname, 'build')));
 
-// Fallback: ANY other route → serve index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 DataBaseConnection()
 .then(()=>{
