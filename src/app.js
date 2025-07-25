@@ -1,12 +1,13 @@
 const express = require('express')
 const app = express()
+const path = require('path');
 const DataBaseConnection = require('./Config/Database');
 const cookieparser = require('cookie-parser')
-const path = require('path');
+
 require('dotenv').config()
 const cors = require('cors')
 
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 
 const userroutes = require('./Routes/UserRoutes')
 const Restaurantroutes = require('./Routes/RestaurantRoutes')
@@ -20,6 +21,7 @@ app.use(cors({
      credentials:true
 }))
 
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.use(express.json())
 app.use(cookieparser())
@@ -29,7 +31,13 @@ app.use('/' , MenuRoutes )
 app.use('/' , UserMenuRoutes )
 app.use('/' , OrderRoutes)
 app.use('/' , FinalRoutes)
+// Serve static files
+app.use(express.static(path.join(__dirname, 'build')));
 
+// Fallback: ANY other route → serve index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 DataBaseConnection()
 .then(()=>{
